@@ -6,6 +6,18 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from './Logo';
 
+// Анимация для навигации
+const navigationVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.2 
+    }
+  }
+};
+
 // Анимация для контейнера меню
 const menuVariants = {
   open: {
@@ -190,7 +202,7 @@ const Navigation = () => {
           ))}
           <div>
             <motion.a 
-              href="tel:+71234567890" 
+              href="tel:+380123456789" 
               className="btn-primary text-sm lg:text-base"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -234,17 +246,18 @@ const Navigation = () => {
               <nav className="flex flex-col space-y-6">
                 {links.map((link) => (
                   <motion.div key={link.href} variants={itemVariants}>
-                    <Link 
-                      href={link.href}
-                      className={`
-                        text-2xl transition-colors ${link.neonClass}
-                        ${pathname === link.href ? 'text-[var(--accent-light)]' : 'text-white'}
-                      `}
-                      onClick={() => setIsOpen(false)}
-                      aria-current={pathname === link.href ? 'page' : undefined}
-                    >
-                      {link.title}
-                    </Link>
+                    <div onClick={() => setIsOpen(false)}>
+                      <Link 
+                        href={link.href}
+                        className={`
+                          text-2xl transition-colors ${link.neonClass}
+                          ${pathname === link.href ? 'text-[var(--accent-light)]' : 'text-white'}
+                        `}
+                        aria-current={pathname === link.href ? 'page' : undefined}
+                      >
+                        {link.title}
+                      </Link>
+                    </div>
                   </motion.div>
                 ))}
               </nav>
@@ -252,7 +265,7 @@ const Navigation = () => {
               <motion.div variants={itemVariants}>
                 <div className="mt-6 text-center">
                   <a 
-                    href="tel:+71234567890" 
+                    href="tel:+380123456789" 
                     className="btn-primary inline-block w-full py-3"
                     onClick={() => setIsOpen(false)}
                     aria-label="Позвонить для бронирования стола"

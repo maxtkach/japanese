@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
-import LocomotiveScroll from 'locomotive-scroll';
-import 'locomotive-scroll/dist/locomotive-scroll.css';
+
+// Не импортируем здесь - будем импортировать внутри useEffect
 
 interface LocomotiveScrollProviderProps {
   children: React.ReactNode;
@@ -14,38 +14,56 @@ export default function LocomotiveScrollProvider({ children }: LocomotiveScrollP
   const [locomotiveScroll, setLocomotiveScroll] = useState<any>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (typeof window === 'undefined' || !containerRef.current) return;
 
-    const scroll = new LocomotiveScroll({
-      el: containerRef.current,
-      smooth: true,
-      multiplier: 1,
-      class: 'is-revealed',
-      reloadOnContextChange: true,
-      touchMultiplier: 2,
-      smartphone: {
-        smooth: true,
-      },
-      tablet: {
-        smooth: true,
+    let scroll: any = null;
+    
+    const initScroll = async () => {
+      try {
+        // Динамически импортируем модуль и стили
+        const LocomotiveScrollModule = await import('locomotive-scroll');
+        await import('locomotive-scroll/dist/locomotive-scroll.css');
+        
+        scroll = new LocomotiveScrollModule.default({
+          el: containerRef.current!,
+          smooth: true,
+          multiplier: 1,
+          class: 'is-revealed',
+          reloadOnContextChange: true,
+          touchMultiplier: 2,
+          smartphone: {
+            smooth: true,
+            breakpoint: 767,
+          },
+          tablet: {
+            smooth: true,
+            breakpoint: 1024,
+          }
+        });
+
+        setLocomotiveScroll(scroll);
+
+        // Обновляем скролл при изменении DOM
+        window.addEventListener('load', () => {
+          scroll.update();
+        });
+
+        // Обновляем при изменении размера окна
+        window.addEventListener('resize', () => {
+          scroll.update();
+        });
+      } catch (error) {
+        console.error('Failed to initialize Locomotive Scroll:', error);
       }
-    });
+    };
 
-    setLocomotiveScroll(scroll);
-
-    // Обновляем скролл при изменении DOM
-    window.addEventListener('load', () => {
-      scroll.update();
-    });
-
-    // Обновляем при изменении размера окна
-    window.addEventListener('resize', () => {
-      scroll.update();
-    });
+    initScroll();
 
     return () => {
-      scroll.destroy();
-      setLocomotiveScroll(null);
+      if (scroll) {
+        scroll.destroy();
+        setLocomotiveScroll(null);
+      }
     };
   }, []);
 

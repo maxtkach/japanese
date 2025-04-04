@@ -4,17 +4,11 @@ import type { Metadata } from "next";
 import dynamic from 'next/dynamic';
 import StaticNavigation from "./components/StaticNavigation";
 import Footer from "./components/Footer";
-import LocomotiveScrollProvider from './components/providers/LocomotiveScrollProvider';
 
 // Импортируем компоненты с анимацией динамически
 const NavigationWithNoSSR = dynamic(
   () => import('./components/Navigation'),
   { ssr: false, loading: () => <StaticNavigation /> }
-);
-
-const SmoothScrollProviderWithNoSSR = dynamic(
-  () => import('./components/providers/SmoothScrollProvider'),
-  { ssr: false }
 );
 
 const inter = Inter({ 
@@ -70,11 +64,9 @@ export default function RootLayout({
         <meta name="theme-color" content="#0d0d0d" />
       </head>
       <body className="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col">
-        <LocomotiveScrollProvider>
-          <NavigationWithNoSSR />
-          <main className="flex-grow pt-16">{children}</main>
-          <Footer />
-        </LocomotiveScrollProvider>
+        <NavigationWithNoSSR />
+        <main className="flex-grow pt-16">{children}</main>
+        <Footer />
       </body>
     </html>
   );
