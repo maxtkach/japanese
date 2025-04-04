@@ -1,49 +1,65 @@
 import Link from 'next/link';
+import { Logo } from './Logo';
 
 const StaticNavigation = () => {
-  const navLinks = [
-    { name: 'Главная', href: '/' },
-    { name: 'Меню', href: '/menu' },
-    { name: 'О нас', href: '/about' },
-    { name: 'Контакты', href: '/contact' },
-  ];
-
   return (
-    <header className="py-4 border-b border-[var(--accent)] shadow-md fixed w-full z-50 bg-neutral-900">
-      <div className="container-custom flex justify-between items-center">
-        <Link href="/" className="flex items-center">
-          <span className="text-2xl md:text-3xl font-bold text-[var(--accent)] font-serif">
+    <header className="py-3 md:py-4 border-b border-[var(--accent-dark)] shadow-md fixed w-full z-50 bg-neutral-900/90">
+      <div className="container-custom flex justify-between items-center px-4 sm:px-6">
+        <Link href="/" className="flex items-center" aria-label="Перейти на головну сторінку">
+          <Logo className="text-[var(--accent-light)] w-8 h-8 sm:w-10 sm:h-10" />
+          <span className="ml-2 text-xl sm:text-2xl md:text-3xl font-bold text-[var(--accent-light)] font-serif">
             さくら
           </span>
-          <span className="ml-2 text-lg md:text-xl font-medium">
+          <span className="ml-2 text-base sm:text-lg md:text-xl font-medium">
             Сакура
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <div key={link.href}>
-              <Link
-                href={link.href}
-                className="transition-colors hover:text-[var(--accent)]"
-              >
-                {link.name}
-              </Link>
-            </div>
-          ))}
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-8" aria-label="Основна навігація">
           <div>
-            <a 
-              href="tel:+71234567890" 
-              className="btn-primary"
+            <Link
+              href="/"
+              className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
             >
-              Забронировать стол
+              Головна
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/menu"
+              className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
+            >
+              Меню
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/about"
+              className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
+            >
+              Про нас
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/contact"
+              className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
+            >
+              Контакти
+            </Link>
+          </div>
+          <div>
+            <a
+              href="tel:+380123456789"
+              className="btn-primary text-sm lg:text-base"
+              aria-label="Зателефонувати для бронювання столу"
+            >
+              Забронювати стіл
             </a>
           </div>
         </nav>
 
-        {/* Mobile menu button */}
-        <button className="md:hidden text-white">
+        <button className="md:hidden text-white p-2" aria-label="Відкрити меню">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
