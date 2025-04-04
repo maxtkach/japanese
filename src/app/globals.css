@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0d0d0d;
+  --foreground: #f5f5f5;
+  --primary: #9d2933;
+  --primary-dark: #7c1f28;
+  --accent: #d4af37;
+  --accent-light: #e6c158;
+  --accent-dark: #b39429;
+  --neutral-light: #e0e0e0;
+  --neutral-dark: #1a1a1a;
+  --neon-glow: 0 0 5px, 0 0 10px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-noto-serif-jp), serif;
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn-primary {
+    @apply bg-[var(--primary)] hover:bg-[var(--primary-dark)] text-white px-6 py-2 rounded transition-colors;
+  }
+  
+  .japanese-border {
+    @apply border-2 border-[var(--accent-dark)] rounded;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-6 text-[var(--accent)];
+  }
+
+  /* Неоновый эффект (более мягкий золотой) */
+  .neon-text-gold {
+    @apply relative text-white transition-all duration-300;
+  }
+  
+  .neon-text-gold:hover {
+    @apply text-[var(--accent-light)];
+    text-shadow: 0 0 4px var(--accent), 0 0 8px var(--accent-dark);
+  }
+
+  /* Эффект пульсации кнопки */
+  .pulse-on-hover {
+    @apply relative overflow-hidden;
+  }
+  
+  .pulse-on-hover::after {
+    @apply absolute inset-0 rounded opacity-0 transition-opacity duration-500;
+    content: '';
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  }
+  
+  .pulse-on-hover:hover::after {
+    @apply opacity-100;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  
+  /* Мягкий эффект увеличения на карточках */
+  .scale-on-hover {
+    @apply transition-transform duration-300 ease-out;
+  }
+  
+  .scale-on-hover:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Эффект подчеркивания при наведении */
+  .underline-hover {
+    @apply relative;
+  }
+  
+  .underline-hover::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-current transition-all duration-300 ease-out;
+    content: '';
+  }
+  
+  .underline-hover:hover::after {
+    @apply w-full;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.97);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0.97);
+    opacity: 0.6;
+  }
+}
