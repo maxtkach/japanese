@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Sakura Restaurant" }],
   creator: "Sakura Restaurant Team",
   publisher: "Sakura Restaurant",
+  metadataBase: new URL("http://localhost:3000"),
   formatDetection: {
     telephone: true,
     email: true,
@@ -44,6 +45,14 @@ export const metadata: Metadata = {
     title: "Сакура | Ресторан Японської Кухні в Києві",
     description: "Автентична японська кухня в сучасному виконанні. Традиційний смак з вишуканою подачею в центрі Києва.",
     siteName: "Sakura Restaurant",
+    images: [
+      {
+        url: "/images/hero-sushi.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Сакура - Японський ресторан в Києві"
+      }
+    ]
   },
   robots: {
     index: true,

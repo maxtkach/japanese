@@ -23,6 +23,12 @@ const ImageAdapter = ({
   priority,
   className
 }: ImageAdapterProps) => {
+  // Проверяем, есть ли в пути расширение файла
+  const imageSrc = src.includes('.') ? src : `${src}.jpg`;
+  
+  // Добавляем корректный базовый путь, если он отсутствует
+  const fullSrc = imageSrc.startsWith('/') ? imageSrc : `/${imageSrc}`;
+  
   // Объединяем style с дополнительными классами, если они есть
   const combinedStyle = className 
     ? { ...style, className } 
@@ -30,7 +36,7 @@ const ImageAdapter = ({
   
   return (
     <Image
-      src={src}
+      src={fullSrc}
       alt={alt}
       fill={fill}
       width={width}
