@@ -24,6 +24,11 @@ const notoSerifJP = Noto_Serif_JP({
   variable: "--font-noto-serif-jp" 
 });
 
+// Базовый URL для GitHub Pages - замените username на ваше имя пользователя
+const baseUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://yourusername.github.io/japanese' 
+  : 'http://localhost:3000';
+
 export const metadata: Metadata = {
   title: "Сакура | Ресторан Японської Кухні в Києві",
   description: "Автентична японська кухня в сучасному виконанні. Традиційний смак з вишуканою подачею в центрі Києва. Суші, роли, гарячі страви та десерти.",
@@ -31,7 +36,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Sakura Restaurant" }],
   creator: "Sakura Restaurant Team",
   publisher: "Sakura Restaurant",
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL(baseUrl),
   formatDetection: {
     telephone: true,
     email: true,

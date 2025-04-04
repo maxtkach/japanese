@@ -2,49 +2,66 @@
 
 import Image from 'next/image';
 
-interface ImageAdapterProps {
+type ImageAdapterProps = {
   src: string;
   alt: string;
+  className?: string;
+  style?: React.CSSProperties;
+  priority?: boolean;
   fill?: boolean;
   width?: number;
   height?: number;
-  style?: React.CSSProperties;
-  priority?: boolean;
-  className?: string;
-}
+};
 
-const ImageAdapter = ({
+export default function ImageAdapter({
   src,
   alt,
-  fill,
+  className = '',
+  style,
+  priority = false,
+  fill = false,
   width,
   height,
-  style,
-  priority,
-  className
-}: ImageAdapterProps) => {
-  // Проверяем, есть ли в пути расширение файла
-  const imageSrc = src.includes('.') ? src : `${src}.jpg`;
+}: ImageAdapterProps) {
+  // Получаем базовый путь для изображений
+  const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
   
-  // Добавляем корректный базовый путь, если он отсутствует
-  const fullSrc = imageSrc.startsWith('/') ? imageSrc : `/${imageSrc}`;
+  // Проверяем, содержит ли src расширение файла
+  const hasExtension = /\.(jpg|jpeg|png|gif|webp|svg)$/.test(src);
+  const fullSrc = hasExtension ? src : `${src}.jpg`;
   
-  // Объединяем style с дополнительными классами, если они есть
-  const combinedStyle = className 
-    ? { ...style, className } 
-    : style;
-  
+  // Формируем полный путь с учетом базового пути для GitHub Pages
+  const imagePath = fullSrc.startsWith('/') 
+    ? `${basePath}${fullSrc}` 
+    : `${basePath}/${fullSrc}`;
+
+  // Используем div с className для обертывания компонента Image
+  if (className) {
+    return (
+      <div className={className}>
+        <Image
+          src={imagePath}
+          alt={alt}
+          style={style}
+          priority={priority}
+          fill={fill}
+          width={width}
+          height={height}
+        />
+      </div>
+    );
+  }
+
+  // Если className не указан, просто возвращаем Image
   return (
     <Image
-      src={fullSrc}
+      src={imagePath}
       alt={alt}
+      style={style}
+      priority={priority}
       fill={fill}
       width={width}
       height={height}
-      style={combinedStyle}
-      priority={priority}
     />
   );
-};
-
-export default ImageAdapter; 
+} 

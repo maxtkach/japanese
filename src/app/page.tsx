@@ -2,13 +2,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Home() {
+  // Получаем базовый путь для изображений
+  const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
+
   return (
     <>
       <section className="min-h-screen relative flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="bg-neutral-950/60 absolute inset-0 z-10"></div>
           <Image
-            src="/images/hero-sushi.jpg"
+            src={`${basePath}/images/hero-sushi.jpg`}
             alt="Изысканная японская кухня"
             priority
             fill
@@ -51,7 +54,7 @@ export default function Home() {
             <div className="japanese-border p-3 transition-all hover:shadow-lg">
               <div className="relative h-64 mb-4">
                 <Image
-                  src="/images/sashimi.jpg"
+                  src={`${basePath}/images/sashimi.jpg`}
                   alt="Сашими"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -66,7 +69,7 @@ export default function Home() {
             <div className="japanese-border p-3 transition-all hover:shadow-lg">
               <div className="relative h-64 mb-4">
                 <Image
-                  src="/images/sushi-set.jpg"
+                  src={`${basePath}/images/sushi-set.jpg`}
                   alt="Суші-сет"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -81,7 +84,7 @@ export default function Home() {
             <div className="japanese-border p-3 transition-all hover:shadow-lg">
               <div className="relative h-64 mb-4">
                 <Image
-                  src="/images/wagyu.jpg"
+                  src={`${basePath}/images/wagyu.jpg`}
                   alt="Вагю стейк"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -135,7 +138,7 @@ export default function Home() {
             <div className="md:w-1/2 relative japanese-border p-3">
               <div className="relative aspect-video">
                 <Image
-                  src="/images/restaurant-interior.jpg"
+                  src={`${basePath}/images/restaurant-interior.jpg`}
                   alt="Інтер'єр ресторану Сакура"
                   fill
                   style={{ objectFit: 'cover' }}

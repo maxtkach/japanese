@@ -1,170 +1,186 @@
 import Image from 'next/image';
 
-export default function MenuPage() {
-  const menuCategories = [
+export default function Menu() {
+  // Получаем базовый путь для изображений
+  const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
+  
+  // Категории меню
+  const categories = [
     {
       id: 'sushi',
-      title: 'Суши и Роллы',
-      description: 'Традиционные и фирменные роллы, приготовленные нашими мастерами',
-      image: '/images/sushi-category.jpg',
-      items: [
-        { name: 'Сашими лосось', price: '235 ₴', description: '5 ломтиков свежего лосося' },
-        { name: 'Суши-сет "Сакура"', price: '850 ₴', description: '16 кусочков фирменных суши' },
-        { name: 'Ролл "Филадельфия"', price: '275 ₴', description: 'Лосось, сливочный сыр, огурец' },
-        { name: 'Ролл "Калифорния"', price: '260 ₴', description: 'Краб, авокадо, огурец, тобико' },
-        { name: 'Ролл "Дракон"', price: '320 ₴', description: 'Угорь, авокадо, огурец, соус унаги' },
-      ]
+      name: 'Суши и роллы',
+      description: 'Традиционные и фирменные суши и роллы'
     },
     {
-      id: 'main',
-      title: 'Горячие блюда',
-      description: 'Традиционные японские горячие блюда',
-      image: '/images/main-category.jpg',
-      items: [
-        { name: 'Мисо рамен', price: '320 ₴', description: 'Традиционный рамен на мисо бульоне с говядиной' },
-        { name: 'Вагю стейк', price: '1350 ₴', description: 'Стейк из мраморной говядины вагю' },
-        { name: 'Тэмпура', price: '280 ₴', description: 'Креветки и овощи в хрустящем тесте' },
-        { name: 'Якитори', price: '210 ₴', description: 'Шашлычки из курицы с соусом тэрияки' },
-        { name: 'Унаги дон', price: '370 ₴', description: 'Рис с угрем под соусом унаги' },
-      ]
-    },
-    {
-      id: 'soups',
-      title: 'Супы',
-      description: 'Традиционные японские супы',
-      image: '/images/soup-category.jpg',
-      items: [
-        { name: 'Мисо суп', price: '140 ₴', description: 'Традиционный суп с водорослями, тофу и зеленым луком' },
-        { name: 'Суимоно', price: '170 ₴', description: 'Прозрачный рыбный бульон с морепродуктами' },
-        { name: 'Том ям', price: '280 ₴', description: 'Острый тайский суп с креветками и грибами' },
-      ]
+      id: 'hot',
+      name: 'Горячие блюда',
+      description: 'Горячие блюда японской кухни'
     },
     {
       id: 'desserts',
-      title: 'Десерты',
-      description: 'Традиционные японские сладости',
-      image: '/images/dessert-category.jpg',
-      items: [
-        { name: 'Моти', price: '185 ₴', description: 'Традиционные рисовые лепешки с начинкой' },
-        { name: 'Дорайяки', price: '165 ₴', description: 'Блинчики с пастой из красных бобов' },
-        { name: 'Японское мороженое', price: '140 ₴', description: 'Мороженое с зеленым чаем матча' },
-      ]
+      name: 'Десерты',
+      description: 'Традиционные японские десерты'
     },
     {
       id: 'drinks',
-      title: 'Напитки',
-      description: 'Традиционные японские и другие напитки',
-      image: '/images/drinks-category.jpg',
-      items: [
-        { name: 'Японский чай', price: '140 ₴', description: 'Традиционный японский зеленый чай' },
-        { name: 'Саке', price: '280 ₴', description: 'Традиционный рисовый алкогольный напиток (100 мл)' },
-        { name: 'Японское пиво', price: '210 ₴', description: 'Пиво "Асахи" или "Саппоро" (0,5 л)' },
-        { name: 'Матча', price: '185 ₴', description: 'Церемониальный японский зеленый чай' },
-      ]
+      name: 'Напитки',
+      description: 'Японские чаи, саке и другие напитки'
+    }
+  ];
+  
+  // Блюда меню
+  const menuItems = [
+    {
+      id: 1,
+      category: 'sushi',
+      name: 'Сашими лосось',
+      description: 'Свежий нарезанный лосось премиум качества',
+      price: '280 грн',
+      image: `${basePath}/images/menu/sashimi-salmon.jpg`
+    },
+    {
+      id: 2,
+      category: 'sushi',
+      name: 'Ролл "Радуга"',
+      description: 'Ролл с разными видами рыбы, авокадо и огурцом',
+      price: '320 грн',
+      image: `${basePath}/images/menu/rainbow-roll.jpg`
+    },
+    {
+      id: 3,
+      category: 'sushi',
+      name: 'Филадельфия',
+      description: 'Классический ролл с лососем, сливочным сыром и авокадо',
+      price: '290 грн',
+      image: `${basePath}/images/menu/philadelphia.jpg`
+    },
+    {
+      id: 4,
+      category: 'hot',
+      name: 'Мисо суп',
+      description: 'Традиционный японский суп с тофу, водорослями и зеленым луком',
+      price: '150 грн',
+      image: `${basePath}/images/menu/miso-soup.jpg`
+    },
+    {
+      id: 5,
+      category: 'hot',
+      name: 'Тэрияки стейк',
+      description: 'Говяжий стейк в соусе тэрияки с овощами',
+      price: '420 грн',
+      image: `${basePath}/images/menu/teriyaki-steak.jpg`
+    },
+    {
+      id: 6,
+      category: 'hot',
+      name: 'Тэмпура',
+      description: 'Креветки и овощи в хрустящем кляре',
+      price: '290 грн',
+      image: `${basePath}/images/menu/tempura.jpg`
+    },
+    {
+      id: 7,
+      category: 'desserts',
+      name: 'Моти',
+      description: 'Традиционный японский десерт из рисового теста с начинкой',
+      price: '180 грн',
+      image: `${basePath}/images/menu/mochi.jpg`
+    },
+    {
+      id: 8,
+      category: 'desserts',
+      name: 'Дорайяки',
+      description: 'Японские блинчики с пастой из сладких бобов',
+      price: '160 грн',
+      image: `${basePath}/images/menu/dorayaki.jpg`
+    },
+    {
+      id: 9,
+      category: 'drinks',
+      name: 'Саке',
+      description: 'Традиционное японское рисовое вино',
+      price: '250 грн',
+      image: `${basePath}/images/menu/sake.jpg`
+    },
+    {
+      id: 10,
+      category: 'drinks',
+      name: 'Зеленый чай',
+      description: 'Японский зеленый чай сенча высшего качества',
+      price: '120 грн',
+      image: `${basePath}/images/menu/green-tea.jpg`
     }
   ];
 
   return (
-    <>
-      <section className="bg-neutral-900 py-16 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-25 z-0">
-          <Image
-            src="/images/menu-bg.jpg"
-            alt="Японская кухня"
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-          />
-        </div>
-        <div className="container-custom relative z-10">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-center text-white">
-            Наше <span className="text-[var(--accent-light)]">Меню</span>
+    <div className="min-h-screen bg-neutral-950">
+      <div className="relative h-[40vh]">
+        <div className="absolute inset-0 bg-neutral-950/60 z-10"></div>
+        <Image
+          src={`${basePath}/images/menu-header.jpg`}
+          alt="Меню ресторана Сакура"
+          fill
+          style={{ objectFit: 'cover' }}
+          priority
+        />
+        <div className="relative z-20 h-full flex items-center justify-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+            Меню ресторана
           </h1>
-          <p className="text-xl text-neutral-300 text-center max-w-2xl mx-auto mb-8">
-            Изысканные блюда японской кухни, приготовленные нашими опытными шеф-поварами
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            {menuCategories.map((category) => (
-              <a 
-                key={category.id}
-                href={`#${category.id}`} 
-                className="btn-primary bg-transparent border-2 border-[var(--accent-dark)] hover:bg-[var(--accent)] hover:text-neutral-900"
-              >
-                {category.title}
-              </a>
-            ))}
-          </div>
         </div>
-      </section>
-
-      {menuCategories.map((category, index) => (
-        <section 
-          key={category.id} 
-          id={category.id} 
-          className={`py-16 ${index % 2 === 0 ? 'bg-neutral-950' : 'bg-neutral-900'}`}
-        >
-          <div className="container-custom">
-            <div className="flex flex-col md:flex-row items-center gap-10 mb-16">
-              <div className="md:w-1/3 relative h-80 w-full japanese-border p-2">
-                <Image
-                  src={category.image}
-                  alt={category.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-              </div>
-              <div className="md:w-2/3">
-                <h2 className="section-title">{category.title}</h2>
-                <p className="text-neutral-300 text-lg mb-6">
-                  {category.description}
-                </p>
-              </div>
-            </div>
+      </div>
+      
+      <div className="container-custom py-16 px-4">
+        {/* Категории меню */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          {categories.map(category => (
+            <a 
+              key={category.id} 
+              href={`#${category.id}`}
+              className="block p-6 bg-neutral-900 border border-neutral-800 rounded-lg transition-all hover:border-[var(--accent-dark)] hover:shadow-lg"
+            >
+              <h2 className="text-xl font-bold mb-2 text-[var(--accent)]">{category.name}</h2>
+              <p className="text-neutral-400">{category.description}</p>
+            </a>
+          ))}
+        </div>
+        
+        {/* Блюда по категориям */}
+        {categories.map(category => (
+          <section key={category.id} id={category.id} className="mb-16">
+            <h2 className="text-3xl font-bold mb-8 text-[var(--accent)] border-b border-neutral-800 pb-2">
+              {category.name}
+            </h2>
             
-            <div className="grid md:grid-cols-2 gap-8">
-              {category.items.map((item, i) => (
-                <div 
-                  key={i} 
-                  className="p-6 bg-neutral-900 rounded-lg flex justify-between items-start hover:shadow-md hover:shadow-black/20 transition-shadow duration-300"
-                >
-                  <div>
-                    <h3 className="text-xl font-medium text-white mb-2 group-hover:text-[var(--accent-light)]">{item.name}</h3>
-                    <p className="text-neutral-400">{item.description}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {menuItems
+                .filter(item => item.category === category.id)
+                .map(item => (
+                  <div 
+                    key={item.id} 
+                    className="bg-neutral-900 rounded-lg overflow-hidden border border-neutral-800 transition-all hover:border-[var(--accent-dark)]"
+                  >
+                    <div className="relative h-48">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </div>
+                    <div className="p-4">
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className="text-xl font-bold">{item.name}</h3>
+                        <span className="text-[var(--accent)] font-medium">{item.price}</span>
+                      </div>
+                      <p className="text-neutral-400">{item.description}</p>
+                    </div>
                   </div>
-                  <span className="text-[var(--accent)] font-bold text-xl">
-                    {item.price}
-                  </span>
-                </div>
-              ))}
+                ))}
             </div>
-          </div>
-        </section>
-      ))}
-
-      <section className="py-20 bg-[var(--primary-dark)]">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Хотите заказать столик?
-          </h2>
-          <p className="text-xl text-neutral-200 mb-8 max-w-2xl mx-auto">
-            Позвоните нам или оставьте заявку на сайте
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="tel:+380123456789" 
-              className="bg-white text-[var(--primary-dark)] hover:bg-[var(--accent-light)] hover:text-neutral-900 px-8 py-3 rounded transition-colors text-lg font-medium pulse-on-hover"
-            >
-              Позвонить
-            </a>
-            <a 
-              href="/contact" 
-              className="border-2 border-white hover:border-[var(--accent-light)] text-white hover:text-[var(--accent-light)] px-8 py-3 rounded transition-colors text-lg"
-            >
-              Заполнить форму
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
+          </section>
+        ))}
+      </div>
+    </div>
   );
 } 

@@ -6,6 +6,10 @@ const nextConfig = {
     unoptimized: true, // Отключаем оптимизацию изображений для статического экспорта
   },
   output: 'export', // Для статической сборки
+  // Добавляем базовый путь для GitHub Pages
+  // Замените 'japanese' на имя вашего репозитория
+  basePath: '/japanese',
+  assetPrefix: '/japanese/',
   transpilePackages: ['framer-motion'],
   webpack(config) {
     // Поддержка SVG файлов

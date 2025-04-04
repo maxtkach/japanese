@@ -1,12 +1,20 @@
 import Link from 'next/link';
-import { Logo } from './Logo';
+import Image from 'next/image';
 
-const StaticNavigation = () => {
+export default function StaticNavigation() {
+  // Получаем базовый путь для изображений
+  const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
+
   return (
     <header className="py-3 md:py-4 border-b border-[var(--accent-dark)] shadow-md fixed w-full z-50 bg-neutral-900/90">
       <div className="container-custom flex justify-between items-center px-4 sm:px-6">
         <Link href="/" className="flex items-center" aria-label="Перейти на головну сторінку">
-          <Logo className="text-[var(--accent-light)] w-8 h-8 sm:w-10 sm:h-10" />
+          <Image 
+            src={`${basePath}/images/logo-light.png`} 
+            alt="Сакура логотип" 
+            width={120} 
+            height={60} 
+          />
           <span className="ml-2 text-xl sm:text-2xl md:text-3xl font-bold text-[var(--accent-light)] font-serif">
             さくら
           </span>
@@ -21,7 +29,7 @@ const StaticNavigation = () => {
               href="/"
               className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
             >
-              Головна
+              Главная
             </Link>
           </div>
           <div>
@@ -37,7 +45,7 @@ const StaticNavigation = () => {
               href="/about"
               className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
             >
-              Про нас
+              О нас
             </Link>
           </div>
           <div>
@@ -45,7 +53,7 @@ const StaticNavigation = () => {
               href="/contact"
               className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
             >
-              Контакти
+              Контакты
             </Link>
           </div>
           <div>
@@ -67,6 +75,4 @@ const StaticNavigation = () => {
       </div>
     </header>
   );
-};
-
-export default StaticNavigation; 
+} 
