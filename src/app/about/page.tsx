@@ -1,35 +1,45 @@
+'use client';
+
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import { useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
+
+// Динамический импорт компонентов анимации
+const SakuraPetals = dynamic(() => import('../components/animations/SakuraPetals'), { ssr: false });
 
 export default function About() {
   // Получаем базовый путь для изображений
   const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
+  
+  // Проверка предпочтения пользователя по уменьшению движения
+  const prefersReducedMotion = useReducedMotion();
 
   // Информация о команде
   const teamMembers = [
     {
-      name: 'Такаши Ямада',
-      role: 'Главный шеф-повар',
+      name: 'Такаші Ямада',
+      role: 'Головний шеф-кухар',
       image: `${basePath}/images/team/chef1.jpg`,
-      bio: 'Опыт работы более 15 лет в лучших ресторанах Токио. Специализируется на традиционной японской кухне.'
+      bio: 'Досвід роботи понад 15 років у найкращих ресторанах Токіо. Спеціалізується на традиційній японській кухні.'
     },
     {
       name: 'Юко Танака',
       role: 'Су-шеф',
       image: `${basePath}/images/team/chef2.jpg`,
-      bio: 'Эксперт по суши и сашими. Участник международных кулинарных конкурсов и призер чемпионата по приготовлению суши.'
+      bio: 'Експерт з суші та сашимі. Учасник міжнародних кулінарних конкурсів та призер чемпіонату з приготування суші.'
     },
     {
-      name: 'Иван Петренко',
-      role: 'Шеф-повар горячей кухни',
+      name: 'Іван Петренко',
+      role: 'Шеф-кухар гарячого цеху',
       image: `${basePath}/images/team/chef3.jpg`,
-      bio: 'Обучался в Японии, совмещает традиционные техники и локальные ингредиенты для создания уникальных блюд.'
+      bio: 'Навчався в Японії, поєднує традиційні техніки та локальні інгредієнти для створення унікальних страв.'
     },
     {
-      name: 'Мария Коваль',
-      role: 'Менеджер ресторана',
+      name: 'Марія Коваль',
+      role: 'Менеджер ресторану',
       image: `${basePath}/images/team/manager.jpg`,
-      bio: 'Профессионал в области ресторанного бизнеса с 10-летним опытом работы в премиальных заведениях.'
+      bio: 'Професіонал у сфері ресторанного бізнесу з 10-річним досвідом роботи у преміальних закладах.'
     }
   ];
 
@@ -40,14 +50,15 @@ export default function About() {
         <div className="absolute inset-0 bg-neutral-950/60 z-10"></div>
         <Image
           src={`${basePath}/images/about-header.jpg`}
-          alt="О ресторане Сакура"
+          alt="Про ресторан Сакура"
           fill
           style={{ objectFit: 'cover' }}
           priority
         />
+        {!prefersReducedMotion && <SakuraPetals count={20} className="z-20" />}
         <div className="relative z-20 h-full flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-            О ресторане
+            Про ресторан
           </h1>
         </div>
       </div>
@@ -58,19 +69,19 @@ export default function About() {
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold mb-6 text-[var(--accent)]">
-                Наша история
+                Наша історія
               </h2>
               <p className="text-lg mb-6">
-                Ресторан "Сакура" был основан в 2012 году командой энтузиастов и любителей японской культуры. 
-                Наша цель - познакомить украинцев с аутентичной японской кухней и подарить незабываемый кулинарный опыт.
+                Ресторан "Сакура" був заснований у 2012 році командою ентузіастів та любителів японської культури. 
+                Наша мета - познайомити українців з автентичною японською кухнею та подарувати незабутній кулінарний досвід.
               </p>
               <p className="text-lg mb-6">
-                Мы начинали как небольшое кафе с ограниченным меню, но благодаря качеству блюд и уникальной атмосфере 
-                быстро завоевали любовь посетителей. Сегодня "Сакура" - это один из ведущих японских ресторанов Киева.
+                Ми починали як невелике кафе з обмеженим меню, але завдяки якості страв та унікальній атмосфері 
+                швидко завоювали любов відвідувачів. Сьогодні "Сакура" - це один з провідних японських ресторанів Києва.
               </p>
               <p className="text-lg">
-                Главной особенностью ресторана является использование только свежих и качественных ингредиентов, 
-                многие из которых импортируются напрямую из Японии.
+                Головною особливістю ресторану є використання лише свіжих та якісних інгредієнтів, 
+                багато з яких імпортуються безпосередньо з Японії.
               </p>
             </div>
             
@@ -78,7 +89,7 @@ export default function About() {
               <div className="relative aspect-video">
                 <Image
                   src={`${basePath}/images/about/restaurant-history.jpg`}
-                  alt="История ресторана Сакура"
+                  alt="Історія ресторану Сакура"
                   fill
                   style={{ objectFit: 'cover' }}
                 />
@@ -94,19 +105,19 @@ export default function About() {
           <div className="flex flex-col md:flex-row-reverse items-center gap-12">
             <div className="md:w-1/2">
               <h2 className="text-3xl font-bold mb-6 text-[var(--accent)]">
-                Наша философия
+                Наша філософія
               </h2>
               <p className="text-lg mb-6">
-                Философия ресторана "Сакура" основана на трех японских принципах: "Wabi" (простота), 
-                "Sabi" (красота в несовершенстве) и "Umami" (глубокий вкус).
+                Філософія ресторану "Сакура" базується на трьох японських принципах: "Wabi" (простота), 
+                "Sabi" (краса в недосконалості) та "Umami" (глибокий смак).
               </p>
               <p className="text-lg mb-6">
-                Мы стремимся не только предложить вкусные блюда, но и создать особую атмосферу, 
-                в которой гости могут погрузиться в японскую культуру и традиции.
+                Ми прагнемо не лише запропонувати смачні страви, але й створити особливу атмосферу, 
+                в якій гості можуть зануритися в японську культуру та традиції.
               </p>
               <p className="text-lg">
-                Каждое блюдо в нашем меню - это результат тщательного подбора ингредиентов, 
-                соблюдения традиционных техник приготовления и внимания к эстетике.
+                Кожна страва в нашому меню - це результат ретельного підбору інгредієнтів, 
+                дотримання традиційних технік приготування та уваги до естетики.
               </p>
             </div>
             
@@ -114,7 +125,7 @@ export default function About() {
               <div className="relative aspect-video">
                 <Image
                   src={`${basePath}/images/about/philosophy.jpg`}
-                  alt="Философия ресторана Сакура"
+                  alt="Філософія ресторану Сакура"
                   fill
                   style={{ objectFit: 'cover' }}
                 />
@@ -157,14 +168,14 @@ export default function About() {
       <section className="py-16 bg-neutral-900">
         <div className="container-custom px-4">
           <h2 className="text-3xl font-bold mb-12 text-center text-[var(--accent)]">
-            Интерьер ресторана
+            Інтер'єр ресторану
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="relative h-64 japanese-border p-2">
               <Image
                 src={`${basePath}/images/about/interior1.jpg`}
-                alt="Интерьер ресторана Сакура"
+                alt="Інтер'єр ресторану Сакура"
                 fill
                 style={{ objectFit: 'cover' }}
               />
@@ -172,7 +183,7 @@ export default function About() {
             <div className="relative h-64 japanese-border p-2">
               <Image
                 src={`${basePath}/images/about/interior2.jpg`}
-                alt="Интерьер ресторана Сакура"
+                alt="Інтер'єр ресторану Сакура"
                 fill
                 style={{ objectFit: 'cover' }}
               />
@@ -180,7 +191,7 @@ export default function About() {
             <div className="relative h-64 japanese-border p-2">
               <Image
                 src={`${basePath}/images/about/interior3.jpg`}
-                alt="Интерьер ресторана Сакура"
+                alt="Інтер'єр ресторану Сакура"
                 fill
                 style={{ objectFit: 'cover' }}
               />

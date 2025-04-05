@@ -29,7 +29,7 @@ export default function StaticNavigation() {
               href="/"
               className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
             >
-              Главная
+              Головна
             </Link>
           </div>
           <div>
@@ -45,7 +45,7 @@ export default function StaticNavigation() {
               href="/about"
               className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
             >
-              О нас
+              Про нас
             </Link>
           </div>
           <div>
@@ -53,7 +53,7 @@ export default function StaticNavigation() {
               href="/contact"
               className="transition-colors relative px-1 py-2 text-sm lg:text-base hover:text-[var(--accent)]"
             >
-              Контакты
+              Контакти
             </Link>
           </div>
           <div>

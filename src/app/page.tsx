@@ -1,9 +1,44 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import { useReducedMotion } from 'framer-motion';
+
+// Динамический импорт компонентов анимации для корректной работы с SSR
+const SakuraPetals = dynamic(() => import('./components/animations/SakuraPetals'), { ssr: false });
+const MovingClouds = dynamic(() => import('./components/animations/MovingClouds'), { ssr: false });
 
 export default function Home() {
   // Получаем базовый путь для изображений
   const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
+  
+  // Состояние для определения мобильного устройства
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Проверка предпочтения пользователя по уменьшению движения
+  const prefersReducedMotion = useReducedMotion();
+  
+  // Количество элементов анимации в зависимости от устройства и предпочтений пользователя
+  const petalCount = prefersReducedMotion || isMobile ? 10 : 30;
+  const cloudCount = prefersReducedMotion || isMobile ? 3 : 8;
+  
+  // Эффект для проверки размера окна
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Проверяем при загрузке
+    checkIfMobile();
+    
+    // Добавляем слушатель на изменение размера окна
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Очистка слушателя при размонтировании
+    return () => window.removeEventListener('resize', checkIfMobile);
+  }, []);
 
   return (
     <>
@@ -12,11 +47,14 @@ export default function Home() {
           <div className="bg-neutral-950/60 absolute inset-0 z-10"></div>
           <Image
             src={`${basePath}/images/hero-sushi.jpg`}
-            alt="Изысканная японская кухня"
+            alt="Вишукана японська кухня"
             priority
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
+          
+          {/* Анимация лепестков сакуры */}
+          {!prefersReducedMotion && <SakuraPetals count={petalCount} className="z-20" />}
         </div>
         
         <div className="container-custom text-center relative z-10 px-4 py-16">
@@ -44,8 +82,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20 bg-neutral-900">
-        <div className="container-custom px-4">
+      <section className="py-20 bg-neutral-900 relative overflow-hidden">
+        {/* Анимация облаков */}
+        {!prefersReducedMotion && <MovingClouds count={cloudCount} maxOpacity={0.1} className="absolute inset-0 z-0" />}
+        
+        <div className="container-custom px-4 relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-[var(--accent)]">
             Фірмові страви
           </h2>
@@ -55,12 +96,12 @@ export default function Home() {
               <div className="relative h-64 mb-4">
                 <Image
                   src={`${basePath}/images/sashimi.jpg`}
-                  alt="Сашими"
+                  alt="Сашимі"
                   fill
                   style={{ objectFit: 'cover' }}
                 />
               </div>
-              <h3 className="text-xl font-bold mb-2">Сашими преміум</h3>
+              <h3 className="text-xl font-bold mb-2">Сашимі преміум</h3>
               <p className="text-neutral-300">
                 Найсвіжіші шматочки лосося, тунця і морського окуня
               </p>
