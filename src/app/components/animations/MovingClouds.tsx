@@ -25,6 +25,9 @@ const Cloud: React.FC<CloudProps> = ({
 }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  
+  // Получаем базовый путь для изображений
+  const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
 
   // Инициализация позиции облака при монтировании компонента
   useEffect(() => {
@@ -95,7 +98,7 @@ const Cloud: React.FC<CloudProps> = ({
     >
       <div style={{ transform: `scale(${scale})` }}>
         <Image
-          src={`/images/cloud${(index % 3) + 1}.svg`}
+          src={`${basePath}/images/cloud${(index % 3) + 1}.svg`}
           alt="Cloud"
           width={200}
           height={120}
@@ -126,6 +129,9 @@ const MovingClouds: React.FC<MovingCloudsProps> = ({
   className = ''
 }) => {
   const [clouds, setClouds] = useState<React.ReactNode[]>([]);
+  
+  // Получаем базовый путь для изображений
+  const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -164,7 +170,7 @@ const MovingClouds: React.FC<MovingCloudsProps> = ({
           // Проверить наличие файлов облаков можно через fetch
           const checkFile = async (cloudId: number) => {
             try {
-              const response = await fetch(`/images/cloud${cloudId}.svg`);
+              const response = await fetch(`${basePath}/images/cloud${cloudId}.svg`);
               return response.ok;
             } catch (error) {
               return false;
@@ -185,7 +191,7 @@ const MovingClouds: React.FC<MovingCloudsProps> = ({
     };
     
     checkClouds();
-  }, []);
+  }, [basePath]);
 
   return (
     <div className={`fixed inset-0 overflow-hidden pointer-events-none ${className}`}>

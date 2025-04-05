@@ -18,7 +18,10 @@ const Petal: React.FC<PetalProps> = ({ position, rotation, scale, speed, rotatio
   const mesh = useRef<THREE.Mesh>(null);
   const initialY = useRef(position[1]);
   const initialRotation = useRef(rotation);
-  const texture = useTexture('/images/sakura-petal.svg');
+  
+  // Получаем базовый путь для изображений
+  const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
+  const texture = useTexture(`${basePath}/images/sakura-petal.svg`);
   
   // Создаем материал с прозрачностью для лепестка
   const material = useMemo(() => {
