@@ -53,6 +53,9 @@ export default function Home() {
             style={{ objectFit: 'cover', objectPosition: 'center' }}
           />
           
+          {/* Анимация облаков */}
+          {!prefersReducedMotion && <MovingClouds count={cloudCount} maxOpacity={0.2} className="z-10" />}
+          
           {/* Анимация лепестков сакуры */}
           {!prefersReducedMotion && <SakuraPetals count={petalCount} className="z-20" />}
         </div>

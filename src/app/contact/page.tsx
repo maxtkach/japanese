@@ -1,13 +1,18 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ContactPage() {
+  // Получаем базовый путь для изображений
+  const basePath = process.env.NODE_ENV === 'production' ? '/japanese' : '';
+  
   return (
     <>
       <section className="relative py-20 md:py-28">
         <div className="absolute inset-0 z-0 opacity-25">
           <Image
-            src="/images/contact-hero.jpg"
+            src={`${basePath}/images/contact-hero.jpg`}
             alt="Контакты ресторана Сакура"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}
@@ -118,7 +123,7 @@ export default function ContactPage() {
               <div className="japanese-border p-3">
                 <div className="relative aspect-square md:aspect-auto md:h-[500px]">
                   <Image
-                    src="/images/map.jpg"
+                    src={`${basePath}/images/map.jpg`}
                     alt="Карта расположения ресторана Сакура"
                     fill
                     style={{ objectFit: 'cover' }}

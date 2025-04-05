@@ -46,7 +46,7 @@ export default function Menu() {
       name: 'Сашимі лосось',
       description: 'Свіжий нарізаний лосось преміум якості',
       price: '280 грн',
-      image: `${basePath}/images/menu/sashimi-salmon.jpg`
+      image: `${basePath}/images/sashimi.jpg`
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ export default function Menu() {
       name: 'Рол "Веселка"',
       description: 'Рол з різними видами риби, авокадо та огірком',
       price: '320 грн',
-      image: `${basePath}/images/menu/rainbow-roll.jpg`
+      image: `${basePath}/images/sushi-set.jpg`
     },
     {
       id: 3,
@@ -62,7 +62,7 @@ export default function Menu() {
       name: 'Філадельфія',
       description: 'Класичний рол з лососем, вершковим сиром та авокадо',
       price: '290 грн',
-      image: `${basePath}/images/menu/philadelphia.jpg`
+      image: `${basePath}/images/sushi-rolls.jpg`
     },
     {
       id: 4,
@@ -70,7 +70,7 @@ export default function Menu() {
       name: 'Місо суп',
       description: 'Традиційний японський суп з тофу, водоростями та зеленою цибулею',
       price: '150 грн',
-      image: `${basePath}/images/menu/miso-soup.jpg`
+      image: `${basePath}/images/miso-soup.jpg`
     },
     {
       id: 5,
@@ -78,7 +78,7 @@ export default function Menu() {
       name: 'Теріякі стейк',
       description: 'Яловичий стейк у соусі теріякі з овочами',
       price: '420 грн',
-      image: `${basePath}/images/menu/teriyaki-steak.jpg`
+      image: `${basePath}/images/wagyu.jpg`
     },
     {
       id: 6,
@@ -86,7 +86,7 @@ export default function Menu() {
       name: 'Темпура',
       description: 'Креветки та овочі у хрусткому клярі',
       price: '290 грн',
-      image: `${basePath}/images/menu/tempura.jpg`
+      image: `${basePath}/images/tempura.jpg`
     },
     {
       id: 7,
@@ -94,7 +94,7 @@ export default function Menu() {
       name: 'Моті',
       description: 'Традиційний японський десерт з рисового тіста з начинкою',
       price: '180 грн',
-      image: `${basePath}/images/menu/mochi.jpg`
+      image: `${basePath}/images/mochi.jpg`
     },
     {
       id: 8,
@@ -102,7 +102,7 @@ export default function Menu() {
       name: 'Дораякі',
       description: 'Японські млинці з пастою зі солодких бобів',
       price: '160 грн',
-      image: `${basePath}/images/menu/dorayaki.jpg`
+      image: `${basePath}/images/dorayaki.jpg`
     },
     {
       id: 9,
@@ -110,7 +110,7 @@ export default function Menu() {
       name: 'Саке',
       description: 'Традиційне японське рисове вино',
       price: '250 грн',
-      image: `${basePath}/images/menu/sake.jpg`
+      image: `${basePath}/images/sake.jpg`
     },
     {
       id: 10,
@@ -118,7 +118,7 @@ export default function Menu() {
       name: 'Зелений чай',
       description: 'Японський зелений чай сенча вищої якості',
       price: '120 грн',
-      image: `${basePath}/images/menu/green-tea.jpg`
+      image: `${basePath}/images/green-tea.jpg`
     }
   ];
 
@@ -127,7 +127,7 @@ export default function Menu() {
       <div className="relative h-[40vh]">
         <div className="absolute inset-0 bg-neutral-950/60 z-10"></div>
         <Image
-          src={`${basePath}/images/menu-header.jpg`}
+          src={`${basePath}/images/menu-bg.jpg`}
           alt="Меню ресторану Сакура"
           fill
           style={{ objectFit: 'cover' }}

@@ -20,25 +20,25 @@ export default function About() {
     {
       name: 'Такаші Ямада',
       role: 'Головний шеф-кухар',
-      image: `${basePath}/images/team/chef1.jpg`,
+      image: `${basePath}/images/chef-1.jpg`,
       bio: 'Досвід роботи понад 15 років у найкращих ресторанах Токіо. Спеціалізується на традиційній японській кухні.'
     },
     {
       name: 'Юко Танака',
       role: 'Су-шеф',
-      image: `${basePath}/images/team/chef2.jpg`,
+      image: `${basePath}/images/chef-2.jpg`,
       bio: 'Експерт з суші та сашимі. Учасник міжнародних кулінарних конкурсів та призер чемпіонату з приготування суші.'
     },
     {
       name: 'Іван Петренко',
       role: 'Шеф-кухар гарячого цеху',
-      image: `${basePath}/images/team/chef3.jpg`,
+      image: `${basePath}/images/chef-3.jpg`,
       bio: 'Навчався в Японії, поєднує традиційні техніки та локальні інгредієнти для створення унікальних страв.'
     },
     {
       name: 'Марія Коваль',
       role: 'Менеджер ресторану',
-      image: `${basePath}/images/team/manager.jpg`,
+      image: `${basePath}/images/manager.jpg`,
       bio: 'Професіонал у сфері ресторанного бізнесу з 10-річним досвідом роботи у преміальних закладах.'
     }
   ];
@@ -49,7 +49,7 @@ export default function About() {
       <div className="relative h-[40vh]">
         <div className="absolute inset-0 bg-neutral-950/60 z-10"></div>
         <Image
-          src={`${basePath}/images/about-header.jpg`}
+          src={`${basePath}/images/about-hero.jpg`}
           alt="Про ресторан Сакура"
           fill
           style={{ objectFit: 'cover' }}
@@ -88,7 +88,7 @@ export default function About() {
             <div className="md:w-1/2 relative japanese-border p-3">
               <div className="relative aspect-video">
                 <Image
-                  src={`${basePath}/images/about/restaurant-history.jpg`}
+                  src={`${basePath}/images/restaurant-story.jpg`}
                   alt="Історія ресторану Сакура"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -124,7 +124,7 @@ export default function About() {
             <div className="md:w-1/2 relative japanese-border p-3">
               <div className="relative aspect-video">
                 <Image
-                  src={`${basePath}/images/about/philosophy.jpg`}
+                  src={`${basePath}/images/philosophy.jpg`}
                   alt="Філософія ресторану Сакура"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -174,7 +174,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="relative h-64 japanese-border p-2">
               <Image
-                src={`${basePath}/images/about/interior1.jpg`}
+                src={`${basePath}/images/interior-1.jpg`}
                 alt="Інтер'єр ресторану Сакура"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -182,7 +182,7 @@ export default function About() {
             </div>
             <div className="relative h-64 japanese-border p-2">
               <Image
-                src={`${basePath}/images/about/interior2.jpg`}
+                src={`${basePath}/images/interior-2.jpg`}
                 alt="Інтер'єр ресторану Сакура"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -190,7 +190,7 @@ export default function About() {
             </div>
             <div className="relative h-64 japanese-border p-2">
               <Image
-                src={`${basePath}/images/about/interior3.jpg`}
+                src={`${basePath}/images/interior-3.jpg`}
                 alt="Інтер'єр ресторану Сакура"
                 fill
                 style={{ objectFit: 'cover' }}
