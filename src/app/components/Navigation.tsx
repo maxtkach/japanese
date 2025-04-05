@@ -151,10 +151,10 @@ const Navigation = () => {
   };
 
   const links: NavLink[] = [
-    { title: 'Главная', href: '/', neonClass: 'neon-text-gold' },
+    { title: 'Головна', href: '/', neonClass: 'neon-text-gold' },
     { title: 'Меню', href: '/menu', neonClass: 'neon-text-gold' },
-    { title: 'О нас', href: '/about', neonClass: 'neon-text-gold' },
-    { title: 'Контакты', href: '/contact', neonClass: 'neon-text-gold' }
+    { title: 'Про нас', href: '/about', neonClass: 'neon-text-gold' },
+    { title: 'Контакти', href: '/contact', neonClass: 'neon-text-gold' }
   ];
 
   return (
@@ -208,7 +208,7 @@ const Navigation = () => {
               whileTap={{ scale: 0.97 }}
               aria-label="Позвонить для бронирования стола"
             >
-              Забронировать стол
+              Забронювати стіл
             </motion.a>
           </div>
         </nav>
@@ -240,7 +240,7 @@ const Navigation = () => {
             id="mobile-menu"
             role="dialog"
             aria-modal="true"
-            aria-label="Мобильное меню"
+            aria-label="Мобільне меню"
           >
             <div className="h-full flex flex-col justify-between px-4 pt-6 pb-8">
               <nav className="flex flex-col space-y-6">
@@ -268,9 +268,9 @@ const Navigation = () => {
                     href="tel:+380123456789" 
                     className="btn-primary inline-block w-full py-3"
                     onClick={() => setIsOpen(false)}
-                    aria-label="Позвонить для бронирования стола"
+                    aria-label="Зателефонувати для бронювання столу"
                   >
-                    Забронировать стол
+                    Забронювати стіл
                   </a>
                 </div>
                 
