@@ -28,4 +28,5 @@ jobs:
         with:
           branch: gh-pages
           folder: out
-          clean: true 
+          clean: true
+          token: ${{ secrets.GITHUB_TOKEN }} 
